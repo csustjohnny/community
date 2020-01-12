@@ -11,3 +11,7 @@
 ##工具
 [Git](https://git-scm.com/download)  
 [VP](https://www.visual-paradigm.com)
+~~~bash
+mvn flyway:migrate
+mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
+~~~

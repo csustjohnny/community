@@ -16,10 +16,18 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class ProfileController {
+
+    private final UserMapper userMapper;
+
+    private final QuestionService questionService;
+
     @Autowired
-    private UserMapper userMapper;
-    @Autowired
-    private QuestionService questionService;
+    public ProfileController(UserMapper userMapper,QuestionService questionService) {
+        this.userMapper = userMapper;
+        this.questionService = questionService;
+
+    }
+
     @GetMapping("/profile/{action}")
     public String profile(@PathVariable(name = "action") String action,
                           Model model,

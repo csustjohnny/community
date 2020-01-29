@@ -22,8 +22,9 @@ import java.util.UUID;
  */
 @Controller
 public class AuthorizeController {
-    @Autowired
-    private GithubProvider githubProvider;
+
+    private final GithubProvider githubProvider;
+    private final UserService userService;
 
     @Value("${github.client.id}")
     private  String clientId;
@@ -33,7 +34,11 @@ public class AuthorizeController {
     private String redirectUri;
 
     @Autowired
-    private UserService userService;
+    public AuthorizeController(GithubProvider githubProvider,UserService userService) {
+        this.githubProvider = githubProvider;
+        this.userService = userService;
+    }
+
 
     @GetMapping("/callback")
     public String callback(@RequestParam(name="code")String code,

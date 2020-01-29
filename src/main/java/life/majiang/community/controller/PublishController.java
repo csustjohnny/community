@@ -21,12 +21,15 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class PublishController {
 
+    private final QuestionService questionService;
 
     @Autowired
-    private QuestionService questionService;
+    public PublishController(QuestionService questionService) {
+        this.questionService = questionService;
+    }
 
     @GetMapping("/publish/{id}")
-    public String edit(@PathVariable("id") Integer id,
+    public String edit(@PathVariable("id") Long id,
                        Model model){
         QuestionDTO question = questionService.getById(id);
         model.addAttribute("title",question.getTitle());
@@ -46,7 +49,7 @@ public class PublishController {
             @RequestParam("title") String title,
             @RequestParam("description") String description,
             @RequestParam("tag") String tag,
-            @RequestParam("id") Integer id,
+            @RequestParam("id") Long id,
             HttpServletRequest request,
             Model model){
         if(title == null || "".equals(title)){

@@ -15,8 +15,13 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 public class IndexController {
+
+    private final QuestionService questionService;
+
     @Autowired(required = false)
-    private QuestionService questionService;
+    public IndexController(QuestionService questionService) {
+        this.questionService = questionService;
+    }
 
     @GetMapping("/")
     public String index(HttpServletRequest request,

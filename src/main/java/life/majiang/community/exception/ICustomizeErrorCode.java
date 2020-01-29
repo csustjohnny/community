@@ -7,4 +7,6 @@ public interface ICustomizeErrorCode {
          * @return error message.
          */
         String getMessage();
+
+        Integer getCode();
 }
